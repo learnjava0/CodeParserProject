@@ -1,0 +1,15 @@
+tree-sitter
+tree-sitter-python
+google-genai
+fastapi
+uvicorn
+pydantic
+PyGithub
+python-dotenv
+
+[dev]
+pytest
+ruff
+mypy
+semgrep
+bandit

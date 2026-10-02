@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: security-agent
+Version: 1.0.0
+Summary: Autonomous Security & Code Health Agent
+Requires-Python: >=3.10
+License-File: LICENSE
+Requires-Dist: tree-sitter
+Requires-Dist: tree-sitter-python
+Requires-Dist: google-genai
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: pydantic
+Requires-Dist: PyGithub
+Requires-Dist: python-dotenv
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: semgrep; extra == "dev"
+Requires-Dist: bandit; extra == "dev"
+Dynamic: license-file
