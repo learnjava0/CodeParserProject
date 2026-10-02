@@ -1,7 +1,9 @@
 import sys
+
 from src.agent.parser.ast_parser import extract_functions
-from src.agent.scanners.llm_scanner import scan_function
 from src.agent.patcher.patch_validator import validate_patch
+from src.agent.scanners.llm_scanner import scan_function
+
 
 def analyze_file(filepath: str):
     """

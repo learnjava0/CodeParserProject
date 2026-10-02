@@ -1,9 +1,12 @@
 import json
+
 from google import genai
 from pydantic import ValidationError
-from src.agent.schemas import Finding
+
 from src.agent.config import GEMINI_API_KEY, MODEL_NAME
 from src.agent.masking.secrets_masker import redact_secrets
+from src.agent.schemas import Finding
+
 
 def scan_function(function_code: str) -> Finding | None:
     """

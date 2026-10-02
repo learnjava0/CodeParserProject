@@ -1,7 +1,9 @@
-import tempfile
 import os
+import tempfile
+
 from src.agent.parser.ast_parser import parser
-from src.agent.scanners.deterministic import run_semgrep, run_bandit
+from src.agent.scanners.deterministic import run_bandit, run_semgrep
+
 
 def validate_patch(patched_code: str) -> bool:
     """

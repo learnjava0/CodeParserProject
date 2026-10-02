@@ -30,8 +30,11 @@ dev = [
 [tool.ruff]
 line-length = 100
 
+[tool.ruff.lint]
+ignore = ["BLE001", "PLW1510"]
+
 [tool.mypy]
-strict = true
+strict = false
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]

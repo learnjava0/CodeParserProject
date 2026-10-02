@@ -1,5 +1,6 @@
-import subprocess
 import json
+import subprocess
+
 
 def run_bandit(filepath: str) -> dict:
     """Run Bandit scanner on a specific file and return JSON results."""
