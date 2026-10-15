@@ -15,7 +15,8 @@ dependencies = [
     "uvicorn",
     "pydantic",
     "PyGithub",
-    "python-dotenv"
+    "python-dotenv",
+    "tenacity"
 ]
 
 [project.optional-dependencies]

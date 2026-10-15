@@ -1,34 +1,55 @@
-name: Security Agent
+name: Security Agent Review
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
 
 jobs:
   scan:
+    name: Aegis Security Analysis
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-          
-      - name: Install dependencies
-        run: pip install .
-        
-      - name: Run Security Agent
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies and scanners
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Verify scanner availability
+        run: |
+          bandit --version || true
+          semgrep --version || true
+
+      - name: Run Aegis Security Review
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # In a real run, you'd pass PR metadata (number, commit SHA) as arguments to the script
         run: |
-          echo "Scanning PR Diff..."
-          # python -m src.agent.main --pr ${{ github.event.pull_request.number }}
+          python -m src.agent.main \
+            --repo "${{ github.repository }}" \
+            --pr "${{ github.event.pull_request.number }}" \
+            --output aegis-findings.json
+
+      - name: Upload Scan Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aegis-security-report
+          path: aegis-findings.json
+          if-no-files-found: ignore
+

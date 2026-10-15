@@ -1,6 +1,7 @@
 LICENSE
 README.md
 pyproject.toml
+src/__init__.py
 src/agent/config.py
 src/agent/main.py
 src/agent/schemas.py
