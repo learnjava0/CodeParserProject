@@ -1,6 +1,7 @@
 import sqlite3
 import subprocess
 
+
 def get_user_secure(user_id):
     # Fixed SQL Injection using parameterized queries
     conn = sqlite3.connect('database.db')

@@ -1,5 +1,6 @@
-import sqlite3
 import os
+import sqlite3
+
 
 def get_user(user_id):
     # SQL Injection vulnerability

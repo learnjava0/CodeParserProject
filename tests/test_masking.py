@@ -1,5 +1,6 @@
 from src.agent.masking.secrets_masker import redact_secrets
 
+
 def test_ip_redaction():
     code = "server_ip = '192.168.1.100'"
     masked = redact_secrets(code)
